@@ -19,7 +19,15 @@ public class Human {
 	 * Static methods- behavior relative to entire class
 	 * constructor- instantiates the class using the keyword "new"
 	 *
+	 * Code Blocks- {things between}
 	 */
+		//Instance code block
+	{System.out.println("I'm in an instance code block");}
+	
+	//Static code block
+	static {System.out.println("I'm in a static code block");}
+	
+	
 	//no args constructor
 	public Human() {
 		System.out.println("I'm in the no args constructor");
@@ -32,12 +40,20 @@ public class Human {
 		  this.weight=weight;
 		  System.out.println("I'm in the constructor with fields");
 	  }
-	 
+	 public static String homePlanet ="Earth";
+	
 	private String name;
 	private int age;
 	private int weight;
 	
+	public static String getHomePlanet() {
+		return homePlanet;
+	}
+	public static void setHomePlanet(String homePlanet) {
+		Human.homePlanet = homePlanet;
+	}
 	public String getName() {
+		  String s="woo";
 		return name;
 	}
 	
@@ -56,14 +72,14 @@ public class Human {
 	public int getWeight() {
 		return weight;
 	}
-
+	//example of shadowing!
 	public void setWeight(int weight) {
-		this.weight = weight;
+		this.weight = weight; //weight is method scope; this.weight is instance scope
 	}
 
-	@Override
-	public String toString() {
-		return "Human [name=" + name + ", age=" + age + ", weight=" + weight + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Human [name=" + name + ", age=" + age + ", weight=" + weight + ", homePlanet= " + homePlanet+" ]";
+//	}
 	
 }
