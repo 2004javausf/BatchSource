@@ -51,11 +51,14 @@ public class Driver {
 		 */
 		//System.out.print("Go Team");
 		System.out.println("Roll Tide");
-		Human h= new Human();
+		Human h= new Human("Abid", 22, 200);
 		System.out.println(h);
-		h.setName("Matt");
-		h.setAge(34);
-		h.setWeight(270);
-		System.out.println(h.getName());
+		
+		Human i= new Human();
+		System.out.println(i);
+//		h.setName("Matt");
+//		h.setAge(34);
+//		h.setWeight(270);
+//		System.out.println(h.getName());
 	}
 }

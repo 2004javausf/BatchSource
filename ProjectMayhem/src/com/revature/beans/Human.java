@@ -20,6 +20,19 @@ public class Human {
 	 * constructor- instantiates the class using the keyword "new"
 	 *
 	 */
+	//no args constructor
+	public Human() {
+		System.out.println("I'm in the no args constructor");
+	}
+	//constructor w/ fields
+	 public Human(String name, int age, int weight) { 
+		  //super(); 
+		  this.name=name;
+		  this.age=age;
+		  this.weight=weight;
+		  System.out.println("I'm in the constructor with fields");
+	  }
+	 
 	private String name;
 	private int age;
 	private int weight;
