@@ -1,7 +1,11 @@
 package com.revature.driver;
 
-import com.revature.beans.Human;
+import java.util.Date;
 
+import com.revature.beans.Human;//<--grabs info from the human class
+// import com.revature.beans.*
+//static import - this only grabs static members of the class
+//static import ...
 public class Driver {
 	//single comment
 	/*
@@ -43,6 +47,11 @@ public class Driver {
 	 * 
 	 */
 	public static void main(String[] args) {
+		Date d=new Date();
+		Date e= new Date();
+		java.sql.Date f=new java.sql.Date(0);
+		d= new Date();
+		//d=java.sql.Date(34);
 		/*public- access modifier, everything can access it
 		 * static- do not need to instantiate to use/belongs to the class
 		 * void- doesn't return anything
@@ -50,12 +59,20 @@ public class Driver {
 		 * 
 		 */
 		//System.out.print("Go Team");
+		
+		
+		
 		System.out.println("Roll Tide");
-		Human h= new Human();
+		
+		Human h= new Human("Abid", 22, 200);
 		System.out.println(h);
-		h.setName("Matt");
-		h.setAge(34);
-		h.setWeight(270);
-		System.out.println(h.getName());
+		Human.setHomePlanet("Mars");
+		Human i= new Human();
+		System.out.println(i);
+		i.getName();
+//		h.setName("Matt");
+//		h.setAge(34);
+//		h.setWeight(270);
+//		System.out.println(h.getName());
 	}
 }
