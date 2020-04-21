@@ -1,0 +1,27 @@
+Map Interface
+	
+	Is an object that maps 'keys' to 'values' (also known as a dictionary in other languages). Each key has to be unique and can be mapped to only 
+	one value, note that a key can be mapped to duplicate values. 
+
+	Methods for basic operations:
+		put, get, remove, containsKey, contiansValue, size and empty
+	Bulk Operations:
+		putAll, clear 
+	Collection Views:
+		keySet, entrySet and values.
+
+	Classes:
+		HashMap: (Uses a technique called "Hashing" to map large string to short string, helps in indexing and searching)
+			Allows duplicate values, not duplicate keys 
+			Allows a single null key and multiple null values
+			Does not guarantee order (and unsynchronized compared to HashTable)
+
+		TreeMap:
+			Does not allow null keys, but does allow null values
+			Sorted according to the natural ordering of the keys
+
+		LinkedHashMap:
+			Very similar to a HashMap, but it maintains insertion order 
+	
+You cannot iterate over the Map objects, like you would from the Collection interface:
+	You will have to iterate over the key set (.keySet()), value set (.valueSet()) or the entry set (.entrySet()).
