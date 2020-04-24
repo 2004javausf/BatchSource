@@ -1,4 +1,9 @@
 package com.revature.beans;
+
+import java.io.Serializable;
+
+import com.revature.classtypes.Hunt;
+
 //Packages are just very fancy folders. Namespace
 
 
@@ -10,7 +15,10 @@ package com.revature.beans;
  * Constants: ALL_CAPS_LOLZ typically delimited by underscores
  */
 
-public class Human {
+public class Human implements Hunt,Serializable 
+
+
+{
 	/*
 	 * Members of a class- couple of forms
 	 * Instance variables-property of a specific object (human's name)
@@ -19,41 +27,53 @@ public class Human {
 	 * Static methods- behavior relative to entire class
 	 * constructor- instantiates the class using the keyword "new"
 	 *
-	 * Code Blocks- {things between}
+	 *Code Blocks- {things between}
 	 */
-		//Instance code block
+	      ///Instance code block
 	{System.out.println("I'm in an instance code block");}
 	
-	//Static code block
+	//Static code
 	static {System.out.println("I'm in a static code block");}
+	
+	
+	
 	
 	
 	//no args constructor
 	public Human() {
 		System.out.println("I'm in the no args constructor");
+		
 	}
 	//constructor w/ fields
-	 public Human(String name, int age, int weight) { 
-		  //super(); 
-		  this.name=name;
-		  this.age=age;
-		  this.weight=weight;
-		  System.out.println("I'm in the constructor with fields");
-	  }
-	 public static String homePlanet ="Earth";
 	
+	public Human(String name, int age, int weight) {
+	//super();
+	this.name=name;
+	this.age=age;
+	this.weight=weight;
+	System.out.println("I'm in the constructor with fields.");
+    //lose the default constructor
+		
+		
+	}
+	
+	public static String homPlanet ="Earth";
 	private String name;
 	private int age;
 	private int weight;
 	
-	public static String getHomePlanet() {
-		return homePlanet;
+	
+	
+	public static String getHomPlanet() {
+		return homPlanet;
 	}
-	public static void setHomePlanet(String homePlanet) {
-		Human.homePlanet = homePlanet;
+
+	public static void setHomPlanet(String homPlanet) {
+		Human.homPlanet = homPlanet;
 	}
+
 	public String getName() {
-		  String s="woo";
+		String s="woo";
 		return name;
 	}
 	
@@ -72,14 +92,15 @@ public class Human {
 	public int getWeight() {
 		return weight;
 	}
+	
 	//example of shadowing!
 	public void setWeight(int weight) {
-		this.weight = weight; //weight is method scope; this.weight is instance scope
+		this.weight = weight;//weight is method scope; this.weight is instance scope;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Human [name=" + name + ", age=" + age + ", weight=" + weight + ", homePlanet= " + homePlanet+" ]";
-//	}
+	//@Override
+	public String toString() {
+		return "Human [name=" + name + ", age=" + age + ", weight=" + weight + ", homePlanet=" + homPlanet + " ]";
+	}
 	
 }

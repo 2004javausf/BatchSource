@@ -3,16 +3,17 @@ package com.revature.varargs;
 public class FunWithVarargs {
 	/*Variable Length Arguments!
 	 * Method that will take a variable number of arguments
-	 * Automates and hides the process of creating and saving the values in an array
+	 * Automates and hides the process of creating and saving the values into an array
 	 * prior to invoking the method
 	 * Vararg MUST be the last argument
 	 * Can be of any type
 	 */
 	
-	public static void vaTest(int  ... v) {
-		System.out.print("Number of Args is: "+ v.length+ " Contents: ");
+	public static void vaTest(int ... v) {
+		
+		System.out.print("Number of Args is: "+ v.length + " Contents:");
 		for(int x:v) {
-			System.out.print(x+" ");
+			System.out.print(x+ " ");
 		}
 	}
 	
@@ -23,5 +24,7 @@ public class FunWithVarargs {
 		System.out.println();
 		vaTest();
 	}
+	
+	
 
 }

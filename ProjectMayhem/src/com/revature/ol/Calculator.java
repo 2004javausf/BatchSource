@@ -6,8 +6,9 @@ public class Calculator {
 	static double b;
 	
 	public static void main(String[] args) {
+		//TODO Auto-generated mehod stub
 		a=5;
-		b=a;	
+		b=a;
 		b=3.9;
 		a=(int)b;
 		Double d=5.2;
@@ -18,31 +19,45 @@ public class Calculator {
 		add(1.3, 4.5);
 		add(4,5,6);
 		System.out.println(add(1,2,3,4));*/
-		System.out.println(add(d.intValue(),(int)5.1,3,e));
-		
+		System.out.println(add(d, e));
 	}
-	//Parametric polymorhism
+	
 	static int add(int a, int b) {
-		System.out.println("This is 1");
+		System.out.println("This is 1 ");
 		System.out.println(a+b);
 		return a+b;
-	}
-
-	static double add(double a, double b) {
-		System.out.println("This is 2");
-		return a+b;
-	}
-	static int add(int a, int b, int c) {
-		System.out.println("This is 3");
-		return a+b+c;
 		
 	}
-	static int add(int ...a) {
-		System.out.println("This is 4");
+	
+	static double add(double a, double b) {
+		System.out.println("This is 2 ");
+		//System.out.println(a+b);
+		return a+b;
+	}
+	
+	//static void add (int a, int b, int c) {
+		//System.out.println("This is 3 ");
+		//System.out.println(a+b+c);
+	//}
+	
+	static int add (int a, int b, int c) {
+	System.out.println("This is 3 ");
+	return a+b+c;
+    }
+	
+	
+	
+	static int add (int ...a) {
+		
+		System.out.println("This is 4 ");
 		int total=0;
 		for(int i:a) {
-			total=total+i;
+			total= total + i;
 		}
 		return total;
+		
+		
+		
 	}
+
 }
