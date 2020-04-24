@@ -1,6 +1,8 @@
 package com.revature.beans;
 //Packages are just very fancy folders. Namespace
 
+import java.io.Serializable;
+
 import com.revature.classtypes.Hunt;
 
 /*
@@ -11,7 +13,12 @@ import com.revature.classtypes.Hunt;
  * Constants: ALL_CAPS_LOLZ typically delimited by underscores
  */
 
-public class Human implements Hunt{
+public class Human implements Hunt,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7374735978496017480L;
+
 	/*
 	 * Members of a class- couple of forms
 	 * Instance variables-property of a specific object (human's name)
