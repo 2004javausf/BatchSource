@@ -35,6 +35,7 @@ public class IOWithCollections {
 		try {
 			ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(humanFile));
 			humanList = (ArrayList<Human>)objectIn.readObject();
+			objectIn.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

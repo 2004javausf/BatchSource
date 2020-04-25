@@ -19,6 +19,11 @@ public class Human implements Hunt,Serializable
 
 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 539720422396765526L;
+
 	/*
 	 * Members of a class- couple of forms
 	 * Instance variables-property of a specific object (human's name)
