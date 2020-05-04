@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.revature.beans.Warrior;
 import com.revature.service.Fight;
+import com.revature.util.LogThis;
 import com.revature.util.Roster;
 
 public class Menu {
@@ -43,7 +44,8 @@ public class Menu {
 		int warriorHP= Integer.parseInt(scan.nextLine());
 		System.out.println("Please enter your Warrior's Attack Power");
 		int warriorAttackPower= Integer.parseInt(scan.nextLine());
-		new Warrior(warriorName,warriorHP,warriorAttackPower);
+		Warrior a=new Warrior(warriorName,warriorHP,warriorAttackPower);
+		LogThis.LogIt("info", a.getName()+ " was created");
 		System.out.println(Roster.warriorList.toString());
 		
 	System.out.println("Would you like to make a new Warrior? (y/n)");
@@ -53,7 +55,7 @@ public class Menu {
 		}else if(choice.equalsIgnoreCase("n")) {
 			startMenu();
 		}else {
-			System.out.println("Too bad, you're goinf back to the Main Menu");
+			System.out.println("Too bad, you're going back to the Main Menu");
 			startMenu();
 		}
 		
@@ -67,6 +69,7 @@ public class Menu {
 		Warrior b= Roster.findWarriorByName(second);
 		System.out.println("LET THE BATTLE BEGIN!");
 		fight.fightTime(a, b);
+		LogThis.LogIt("info", a.getName()+" just punched "+ b.getName()+ " and it costs them "+ a.getAttackPower()+ " points of damage");
 		System.out.println(a.getName()+" just punched "+ b.getName()+ " and it costs them "+ a.getAttackPower()+ " points of damage");
 		System.out.println(b.getName()+"'s HP is now " + b.getHp());
 	}
