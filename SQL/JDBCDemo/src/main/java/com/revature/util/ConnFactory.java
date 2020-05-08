@@ -27,8 +27,8 @@ public class ConnFactory {
 	public Connection getConnection() {
 		
 		String url= "jdbc:oracle:thin:@java2004usf.ccjzasyyhpja.us-east-2.rds.amazonaws.com:1521:ORCL";
-		String user= "kittenkillzu";
-		String password= "pega4life";
+		String user= "chinook";
+		String password= "p4ssw0rd";
 		Connection conn =null;
 		try {
 			conn=DriverManager.getConnection(url,user,password);
