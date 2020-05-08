@@ -1,0 +1,268 @@
+--QUERIES
+/*OPERATION THAT RETRIEVE FROM ONE OR MORE TABLES OR A VIEW
+    TOP lEVEL SELECT STATEMENT
+QUERY MAKE UP
+SELECT [COLUMN LIST] <-REQUIRED
+FROM [TABLE LIST]    <-REQUIRED
+WHERE [CONDITION] AND [CONDITION] <-NOT REQUIRED
+GROUP BY [COLUMN LIST]
+    GROUPS YOUR RESULTSET SO FAR, WIDE TO NARROW
+    AGGREGATE FUNCTIONS GO HERE(AVG,MAX,MIN,ETC)
+HAVING [CONDITION]
+    HAVING IS USED WITH THE GROUP BY IN A QUERY
+    TELL THE GROUP BY WHICH GROUPS TO INCLUDE IN THE OUTPUT
+        HAVING IS TO GROUP BY AS WHERE IS TO A SELECT
+            WHERE CLAUSE PLACES CONDITIONS ON THE SELECTED COLUMNS
+            HAVING CLAUSE PLACES CONDITION ON GROUPS CREATED BY THE GROUP BY CLAUSE
+     AGGREGATE FUNCTIONS GO HERE(AVG,MAX,MIN,ETC)
+ORDER BY[COLUMNS LIST]
+    DEFAULT IS ASCENDING
+    DESC FOR DESCENDING
+
+*/
+--FULL SELECT STATEMENT
+SELECT COUNT(EMPLOYEEID),COUNTRY,CITY
+FROM EMPLOYEE
+GROUP BY COUNTRY,CITY
+HAVING COUNT(EMPLOYEEID)>1
+ORDER BY cOUNT(EMPLOYEEID) DESC;
+/*
+Logical Operators
+Logical operators are those that are true or false. They return true or false values to combine one or more true or false values. 
+AND 
+compares between two Booleans as expression and returns true when both expressions are true. 
+OR 
+compares between two Booleans as expression and returns true when one of the expression is true. 
+NOT 
+takes a single Boolean as an argument and changes its value from false to true or from true to false. 
+IN 
+checks a value within a set of values separated by commas and retrieve the rows from the table which are matching. 
+BETWEEN 
+tests an expression against a range. The range consists of a beginning, followed by an AND keyword and an end expression. 
+ANY/SOME 
+compares a value to each value in a list or results from a query and evaluates to true if the result of an inner query contains 
+at least one row. 
+ALL
+used to select all records of a SELECT statement. It compares a value to every value in a list or results from a query. 
+must be preceded by the comparison operators and evaluates to TRUE if the query returns no rows. 
+EXISTS 
+checks the existence of a result of a subquery. 
+tests whether a subquery fetches at least one row 
+when no data is returned then this operator returns 'FALSE'. 
+
+*/
+
+/*Functions (built in)
+SCALAR -RETURN A SINGLE FOR EVERY ROW OF A QUERIED TABLE/ROWS
+    FOUR TYPES
+        NUMERIC
+        CHARACTER OR TEXT
+        DATE
+        CONVERSION
+AGGREGATE - RETURNS A SINGLE A SINGLE RESULT OR SET ON A GROUP OF ROWS/TABLE
+    -AVG()
+    
+*/
+
+--SCALAR
+SELECT UPPER(NAME) FROM ARTIST;
+
+--AGGREGATE
+SELECT AVG(UNITPRICE) FROM TRACK;
+
+/*SUB QUERIES
+QUERY NESTED INSIDE OF A QUERY (SELECT IN A SELECT)
+NARROW DOWN A RESULT
+NESTED IM THE WHERE CLAUSE
+TWO TYPES!
+    NON CORRELATED
+        THE INNER QUERY CAN EXECUTE INDEPENDENTLY OF THE OUTER QUERY
+            StudentDetails Table
+            S_ID
+            S_NAME
+            S_MAJOR
+
+                SELECT S_ID,S_NAME
+                FROM StudentDetails
+                WHERE S_NAME IN (
+                SELECT S_NAME FROM StudentDetails
+                WHERE S_MAJOR = 'History');
+    CORRELATED
+    The inner query is not independent
+    
+        ORDER Table
+        O_ID
+        PRODUCT
+        QTY
+        
+        PRODUCT Table
+        P_ID
+        P_NAME
+        
+            SELECT P_NAME 
+            FROM PRODUCT P
+            WHERE P_ID=(
+            SELECT O.PRODUCT
+            FROM ORDER O
+            WHERE O.PRODUCT=P.P_ID);
+O and P are examples of aliases. You can create the alias O “after” using it in the previous SELECT line,
+since it’s part of the same clause. P is referencing the outer query from the inner query,
+so the inner query is dependent on the outer query. For it to be independent (non-correlated), 
+you’d have to be able to remove the alias P and have it work.
+
+*/
+
+/*Joins
+Return a result set by combining two or more tables
+Classifications of joins
+    Equi- =
+    Theta- >,<,!=
+ Types   
+    Inner - Return only rows that match
+    Left/Right [direction] 's stuff and matches from the other direction
+    Full Outer - result set contains entries from both
+    Cross- cartesian product
+    Self- a table joined on itself
+*/
+CREATE TABLE STUDENT(
+S_ID NUMBER,
+s_NAME VARCHAR2(20),
+SCH_ID NUMBER);
+
+CREATE TABLE SCHOOL (
+SCH_ID NUMBER,
+SCH_NAME VARCHAR2(20));
+
+INSERT INTO SCHOOL VALUES(1,'USF');
+INSERT INTO SCHOOL VALUES(2,'UA');
+INSERT INTO SCHOOL VALUES(3,'OSU');
+INSERT INTO SCHOOL VALUES(4,'LSU');
+INSERT INTO SCHOOL VALUES(5,'CLE');
+INSERT INTO SCHOOL VALUES(6,'CMU');
+INSERT INTO SCHOOL VALUES(7,'HARD KNOCKS');
+
+INSERT INTO STUDENT VALUES(1,'MATT',2);
+INSERT INTO STUDENT VALUES(2,'ANAS',3);
+INSERT INTO STUDENT VALUES(3,'ABID',1);
+INSERT INTO STUDENT VALUES(4,'KENYEL',4);
+INSERT INTO STUDENT VALUES(5,'MO',4);
+INSERT INTO STUDENT VALUES(6,'ANDRES',6);
+INSERT INTO STUDENT VALUES(7,'CASEY',3);
+INSERT INTO STUDENT VALUES(8,'JASON',1);
+INSERT INTO STUDENT VALUES(9,'TINA',6);
+INSERT INTO STUDENT VALUES(10,'ZACH',6);
+INSERT INTO STUDENT VALUES(11,'MELISSA',5);
+
+--INNER JOIN
+SELECT *
+FROM SCHOOL INNER JOIN STUDENT
+ON SCHOOL.SCH_ID = STUDENT.SCH_ID;
+
+--OUTER JOIN
+SELECT *
+FROM SCHOOL FULL OUTER JOIN STUDENT
+ON SCHOOL.SCH_ID = STUDENT.SCH_ID;
+
+--LEFT/RIGHT JOINS
+SELECT *
+FROM SCHOOL RIGHT JOIN STUDENT
+ON SCHOOL.SCH_ID= STUDENT.SCH_ID;
+
+--CROSS JOIN
+CREATE TABLE SHIRT(
+DESIGN VARCHAR2(20)
+);
+
+CREATE TABLE SIZES(
+SIZEOFSHIRT VARCHAR2(2));
+
+INSERT INTO SHIRT VALUES('CAT');
+INSERT INTO SHIRT VALUES('DOG');
+INSERT INTO SHIRT VALUES('FISH');
+
+INSERT INTO SIZES VALUES('S');
+INSERT INTO SIZES VALUES('M');
+INSERT INTO SIZES VALUES('L');
+
+SELECT *           FROM SHIRT CROSS JOIN SIZES;
+--CROSS JOIN PT 2
+SELECT * FROM SHIRT,SIZES;
+
+--SELF JOIN
+CREATE TABLE FRIENDS(
+F_ID NUMBER,
+F_NAME VARCHAR(20),
+FRIEND NUMBER);
+
+INSERT INTO FRIENDS VALUES (1,'MATT',6);
+INSERT INTO FRIENDS VALUES (2,'MAURIE',5);
+INSERT INTO FRIENDS VALUES (3,'MELISSA',4);
+INSERT INTO FRIENDS VALUES (4,'CASEY',3);
+INSERT INTO FRIENDS VALUES (5,'DANIEL',2);
+INSERT INTO FRIENDS VALUES (6,'BRAD',1);
+
+SELECT A.F_NAME AS FRIEND1, B.F_NAME AS FRIEND2
+FROM FRIENDS A JOIN FRIENDS B
+ON A.FRIEND =B.F_ID;
+
+--SET OPS
+/*USED FOR COMPARING RESULT SETS.....NOT TABLES 
+MUST HAVE THE SAME NUMBER AND TYPE OF COLUMNS (IN THAT ORDER)
+UNION ALL - ADD 2 RESULT SETS TO MAKE 1
+UNION - RETURN DISTINCT VALUES FROM 2 RESULT SETS
+INTERSECT -RETURN ROW ONLY RETURNED BY BOTH QUERIES
+MINUS - RETURN ONLY UNIQUE ROWS RETURNED BY THE FRIST QUERY THAT ARE NOT RETURNED BY THE SECOND QUERY 
+*/
+--PL/SQL!
+--SEQUENCE
+CREATE SEQUENCE MYSEQ;
+INSERT INTO STUDENT VALUES(MYSEQ.NEXTVAL,'DOM', MYSEQ.NEXTVAL);
+SELECT MYSEQ.NEXTVAL  FROM DUAL; --DUAL IS A DUMMY TABLE
+SELECT * FROM STUDENT;
+
+CREATE SEQUENCE YOURSEQ
+START WITH 200
+MAXVALUE 800
+INCREMENT BY -4;
+
+SELECT YOURSEQ.NEXTVAL FROM DUAL;
+
+--VIEW
+CREATE OR REPLACE VIEW MYVIEW
+AS
+SELECT TITLE AS A_LIST_OF_STUFF FROM ALBUM
+UNION 
+SELECT NAME FROM ARTIST;
+
+SELECT * FROM MYVIEW
+WHERE a_list_of_stuff LIKE 'T%' OR a_list_of_stuff LIKE 'B%';
+
+--INDEX
+CREATE INDEX MYINDEX
+ON TRACK(BYTES);
+
+--TRIGGER
+CREATE OR REPLACE TRIGGER MYTRIG
+BEFORE INSERT ON STUDENT
+FOR EACH ROW
+BEGIN
+SELECT MYSEQ.NEXTVAL INTO: NEW.S_ID FROM DUAL; 
+END;
+/
+
+INSERT INTO STUDENT VALUES(1,'AHMAD', 2);
+
+SELECT * FROM STUDENT;
+
+ALTER TABLE STUDENT
+ADD CONSTRAINT PK_ID
+PRIMARY KEY (S_ID);
+
+CREATE OR REPLACE TRIGGER MYTRIG1
+AFTER INSERT ON STUDENT
+FOR EACH ROW
+BEGIN
+SELECT MYSEQ.NEXTVAL INTO: CURRENT.S_ID FROM DUAL; 
+END;
+/
+DROP TRIGGER MYTRIG;
