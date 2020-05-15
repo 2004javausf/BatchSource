@@ -1,0 +1,33 @@
+HTTP
+HyperText Transfer Protocol
+General means of communication across the worldwide web.
+Browsers send HTTP requests to servers, and servers send HTTP responses back.
+Packets are broken up into Head and Body
+HTTP requests have methods that define the type of request.
+HTTP Method Properties
+    -Safe - Doesn't change any data
+    -Idempotent - has the same result when 1 to X times
+HTTP Methods	Safe	Idempotent
+Get             Y           Y
+Post            N           N
+Put             N           Y
+Delete          N           Y
+Connect
+Head            Y
+Option          Y
+
+Get (Read)
+    Generally used for retrieving data
+    We include parameters in the URL to send information
+    Request body is (cannot be) used
+    Header contains a lot of information about encoding, packet’s destination (IP address), other metadata.
+Post (Create)
+    Generally used for sending information in the request body.
+    Better for logins, sensitive information, etc. since Get requests would include the sensitive information as parameters in the URL.
+    Not limited in size.
+Status codes (response)
+    100-199: purely information
+    200-299: all is well
+    300-399: redirect
+    400-499: bad request (404 not found is the most familiar one)
+    500-599: internal server error
