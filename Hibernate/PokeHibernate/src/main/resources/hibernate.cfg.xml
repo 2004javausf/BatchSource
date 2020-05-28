@@ -5,8 +5,8 @@
        <hibernate-configuration>
        	<session-factory>
        			<!-- JDBC Connection parameters -->
-       			<property name="hibernate.connection.username">kittenkillzu</property>
-       			<property name="hibernate.connection.password">pega4life</property>
+       			<property name="hibernate.connection.username">hibernatedemo</property>
+       			<property name="hibernate.connection.password">p4ssw0rd</property>
        			<property name="hibernate.connection.url">jdbc:oracle:thin:@java2004usf.ccjzasyyhpja.us-east-2.rds.amazonaws.com:1521:ORCL</property>
        			<property name="hibernate.configuration.driver_class">oracle.jdbc.driver.OracleDriver</property>
        
