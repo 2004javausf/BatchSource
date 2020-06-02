@@ -10,6 +10,7 @@ public class Driver {
 
 		System.out.println("Creating bean container");
 		AnnotationConfigApplicationContext container = new AnnotationConfigApplicationContext(AppConfig.class);
+		System.out.println("Before registerShutdownHook()");
 		container.registerShutdownHook();
 		System.out.println("Bean container created!");
 		
