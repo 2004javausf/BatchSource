@@ -4,6 +4,7 @@
 
 package com.revature.repository;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -11,7 +12,11 @@ import com.revature.model.Trainer;
 import com.revature.util.ConnectionUtil;
 
 public class TrainerRepositoryHibernate implements TrainerRepository {
-
+	public void testNamedQuery() {
+		//Query query= .createNamedQuery("nameOFQuery",Trainer.class);
+	}
+	
+	
 	@Override
 	public int save(Trainer trainer) {
 		Session session = ConnectionUtil.getSession();
