@@ -34,7 +34,7 @@ public class Driver {
 		/* Types */
 		logger.trace("---Types---");
 		
-		/* Insterting */
+		/* Inserting */
 		logger.trace("Grass ID: " + pokemonTypeRepository.save(new PokemonType("GRASS")));
 		logger.trace("Fire ID: " + pokemonTypeRepository.save(new PokemonType("FIRE")));
 		logger.trace("Water ID: " + pokemonTypeRepository.save(new PokemonType("WATER")));
