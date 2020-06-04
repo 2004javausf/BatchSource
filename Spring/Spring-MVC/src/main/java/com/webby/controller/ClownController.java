@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,9 +50,11 @@ public class ClownController {
 	 * 	in the body of the response instead of building the entire response
 	 * 	with response entity.
 	 */
-	@GetMapping("/id.app")
-	public @ResponseBody ConfusedClowns getById(){
-		return cd.findById(2);
+	@GetMapping("{id}/id.app")
+	public @ResponseBody ConfusedClowns getById(@PathVariable int id){
+		if (id < 1 || id > 4) {
+			return null;
+		} else {return cd.findById(id);}
 	}
 	
 	/*
@@ -66,5 +70,15 @@ public class ClownController {
 	 * 	in the response body.
 	 */
 	
+//	@GetMapping("/dementia.app")
+//	public @ResponseBody List<ConfusedClowns> getByDementia(boolean bool){
+//		return cd.findAllByDimensia(bool);
+//	}
+
+	@GetMapping("/dementia.app")
+	public @ResponseBody List<ConfusedClowns> getByDementia(@RequestHeader boolean d){
+		return cd.findAllByDimensia(d);
+	}
+
 	
 }
