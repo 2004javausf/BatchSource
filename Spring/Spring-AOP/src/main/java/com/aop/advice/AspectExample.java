@@ -53,7 +53,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AspectExample {
 	
-	@Before("execution(* sing*(..))")
+	@Before("execution(* *(..))")
 	public void beforeSinging(JoinPoint jp) {
 //		jp.getSignature();
 		System.out.println("this is the advice to run before singing");
