@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.orm.model.Tvshow;
 
 @Repository
+@Transactional
 public class TvDao {
 
 	private SessionFactory sesfact;
@@ -19,13 +20,13 @@ public class TvDao {
 	public TvDao(SessionFactory ses) {
 		this.sesfact=ses;
 	}
-	@Transactional
+//	@Transactional
 	public void insert(Tvshow tv) {
 //		Session ses = sesfact.openSession();
 //		Transaction tx = ses.beginTransaction();
 //		ses.save(tv);
 //		tx.commit();
-		sesfact.openSession().save(tv);
+		sesfact.getCurrentSession().save(tv);
 	}
 	
 	public Tvshow get(int id) {
