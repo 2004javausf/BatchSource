@@ -4,7 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aspect="http://www.springframework.org/schema/aop"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:transaction="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context
@@ -16,26 +16,21 @@
                         http://www.springframework.org/schema/tx
                         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<tx:annotation-driven />
 	<context:annotation-config />
-	<context:component-scan base-package="com.webby" />
+	<context:component-scan base-package="com.orm" />
+	<transaction:annotation-driven />
 	<aspect:aspectj-autoproxy />
-	<mvc:annotation-driven />
 
-	<bean id="datasource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="username" value="kittenkillzu" />
-		<property name="password" value="pega4life" />
-		<property name="url"
-			value="jdbc:oracle:thin:@java2004usf.ccjzasyyhpja.us-east-2.rds.amazonaws.com:1521:ORCL" />
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver" />
+	<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="username" value="kittenkillzu"/>
+		<property name="password" value="pega4life"/>
+		<property name="url" value="jdbc:oracle:thin:@java2004usf.ccjzasyyhpja.us-east-2.rds.amazonaws.com:1521:ORCL"/>
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 	</bean>
-
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="datasource" />
-		<property name="packagesToScan" value="com.webby.model" />
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="datasource"/>
+		<property name="packagesToScan" value="com.orm.model"/>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
@@ -47,11 +42,11 @@
 			</props>
 		</property>
 	</bean>
-
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-
+	
+	
 
 </beans>
