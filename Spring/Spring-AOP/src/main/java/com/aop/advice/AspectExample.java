@@ -53,7 +53,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AspectExample {
 	
-<<<<<<< HEAD
 //	@Before("execution(* sing*(..))")
 //	public void beforeSinging(JoinPoint jp) {
 ////		jp.getSignature();
@@ -70,12 +69,6 @@ public class AspectExample {
 	@After("execution(* sing*(..))")
 	public void afterSinging(JoinPoint pjp) throws Throwable {
 		System.out.println("this is the advice to run after singing");
-=======
-	@Before("execution(* *(..))")
-	public void beforeSinging(JoinPoint jp) {
-//		jp.getSignature();
-		System.out.println("this is the advice to run before singing");
->>>>>>> 200680923c933a99b4cf950a9a50f470e05a0ba5
 	}
 	
 	@AfterReturning("execution(void sing*(..))")
