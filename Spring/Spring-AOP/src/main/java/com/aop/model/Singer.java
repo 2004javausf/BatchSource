@@ -1,5 +1,7 @@
 package com.aop.model;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -32,8 +34,9 @@ public class Singer {
 		return 720;
 	}
 	
-	public void singOceanMan() {
+	public void singOceanMan() throws IOException {
 		System.out.println("rocket man");
+		throw new IOException("you can put whatever there, in theory this should work...");
 	}
 	
 	public void yellAtAssociates() {

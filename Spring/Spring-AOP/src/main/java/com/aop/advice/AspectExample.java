@@ -1,10 +1,10 @@
 package com.aop.advice;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 /**
@@ -53,17 +53,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class AspectExample {
 	
-	@Before("execution(* sing*(..))")
-	public void beforeSinging(JoinPoint jp) {
-//		jp.getSignature();
-		System.out.println("this is the advice to run before singing");
+//	@Before("execution(* sing*(..))")
+//	public void beforeSinging(JoinPoint jp) {
+////		jp.getSignature();
+//		System.out.println("this is the advice to run before singing");
+//	}
+	
+//	@Around("execution(* sing*(..))")
+//	public void aroundSinging(ProceedingJoinPoint pjp) throws Throwable {
+//		System.out.println("this is the advice to run before singing");
+//		pjp.proceed();
+//		System.out.println("this is after the sing method executes");
+//	}
+
+	@After("execution(* sing*(..))")
+	public void afterSinging(JoinPoint pjp) throws Throwable {
+		System.out.println("this is the advice to run after singing");
 	}
 	
-	@Around("execution(* sing*(..))")
-	public void aroundSinging(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("this is the advice to run before singing");
-		pjp.proceed();
-		System.out.println("this is after the sing method executes");
+	@AfterReturning("execution(void sing*(..))")
+	public void afterReturningSinging(JoinPoint pjp) throws Throwable {
+		System.out.println("this is the advice to run after returning singing");
 	}
-
+	
+	@AfterThrowing("execution(* sing*(..))")
+	public void afterThrowingSinging(JoinPoint pjp) {
+		System.out.println("this is the advice to run after throwing singing");
+	}
 }
