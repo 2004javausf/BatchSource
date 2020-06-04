@@ -7,11 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webby.dao.ClownDao;
+import com.webby.dao.DaoContract;
 import com.webby.model.ConfusedClowns;
 
 @Controller
@@ -19,10 +22,10 @@ import com.webby.model.ConfusedClowns;
 public class ClownController {
 
 	
-	private ClownDao cd;
+	private DaoContract<ConfusedClowns, Integer> cd;
 	
 	@Autowired
-	public ClownController(ClownDao c) {
+	public ClownController(DaoContract<ConfusedClowns, Integer> c) {
 		this.cd=c;
 	}
 	
@@ -35,7 +38,7 @@ public class ClownController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/clowns.app")
 	public ResponseEntity<List<ConfusedClowns>> getAll(){
-		return new ResponseEntity<>(cd.getAll(), HttpStatus.OK);
+		return new ResponseEntity<>(cd.findAll(), HttpStatus.OK);
 	}
 	
 	/*
@@ -65,6 +68,13 @@ public class ClownController {
 	 * 	should get the boolean from the headers and put the list
 	 * 	in the response body.
 	 */
+	
+	@PostMapping("/clowns.app")
+	public @ResponseBody String insert(@RequestBody ConfusedClowns t) {
+		cd.insert(t);
+		return "inserted";
+	}
+	
 	
 	
 }

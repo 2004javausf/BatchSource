@@ -4,6 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aspect="http://www.springframework.org/schema/aop"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context
@@ -11,10 +12,46 @@
                         http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop.xsd
                         http://www.springframework.org/schema/mvc
-                        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-                        
-	<context:annotation-config/>
-	<context:component-scan base-package="com.webby"/>
-	<aspect:aspectj-autoproxy/>
-	<mvc:annotation-driven/>
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<tx:annotation-driven />
+	<context:annotation-config />
+	<context:component-scan base-package="com.webby" />
+	<aspect:aspectj-autoproxy />
+	<mvc:annotation-driven />
+
+	<bean id="datasource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="username" value="kittenkillzu" />
+		<property name="password" value="pega4life" />
+		<property name="url"
+			value="jdbc:oracle:thin:@java2004usf.ccjzasyyhpja.us-east-2.rds.amazonaws.com:1521:ORCL" />
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="datasource" />
+		<property name="packagesToScan" value="com.webby.model" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<!-- if you need to set the isolation level -->
+				<prop key="hibernate.connection.isolation">repeatable_read</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
 </beans>
