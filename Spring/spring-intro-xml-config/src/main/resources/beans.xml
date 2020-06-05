@@ -11,6 +11,33 @@
           <bean id="myCoach" class="com.revature.model.TrackCoach" scope="singleton">
           		<!-- Inject the MotivationService dependency using constructor injection -->
           		<constructor-arg ref="myMotivationService"/>
+          		
+          		<!-- 
+          			scopes of a spring bean for spring 4
+          				singleton					(default) only one instance for all references
+          				prototype					one instance for each reference
+          				request						one instance for each http request
+          				session						one instance for each http session
+          				globalSession				one instance for all http sessions
+          				
+          			scopes of a spring bean for spring 5 (keep in your back pocket)
+          				singleton
+          				prototype
+          				request
+          				session
+          				application					ties the instance to the lifecycle of a servlet context
+          				websocket					ties the instance to the lifecycle of a websocket
+          				
+          				
+          			autowiring types
+          				constructor					going to look for the datatype inside the constructor parameters and 
+          												inject the spring bean into the appropriate argument.
+          				byType						setter injection determined by the type of the dependecy
+          				byName						setter injection determined by the property name.
+          				no							autowiring is turned off (default)
+          				
+          				 <bean id="myCoach" class="com.revature.model.TrackCoach" scope="singleton" autowire="constructor"/>
+          		 -->
           </bean>   
 		<bean id="myMotivationService" class="com.revature.services.MotivationServiceImpl"></bean>
 
