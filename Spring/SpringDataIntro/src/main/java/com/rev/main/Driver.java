@@ -1,5 +1,7 @@
 package com.rev.main;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,9 +16,9 @@ ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
 		
 		addSomeGuitars(ac);
 		
-		//GuitarDAO gd=(GuitarDAO)ac.getBean("guitarDAO");
-		
-		
+		GuitarDAO gd=(GuitarDAO)ac.getBean("guitarDAO");
+		List<Guitar> glist=gd.findGuitarByMake("Gibson");
+		System.out.println(glist);
 		((AbstractApplicationContext) ac).close();
 
 	}
