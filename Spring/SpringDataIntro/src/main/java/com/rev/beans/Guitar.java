@@ -18,8 +18,9 @@ import org.springframework.stereotype.Component;
 public class Guitar {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="guitarSequence")
-	@SequenceGenerator(allocationSize=1,name="guitarSequence", sequenceName="SQ_GUITAR_PK")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="guitarSequence")
+//	@SequenceGenerator(allocationSize=1,name="guitarSequence", sequenceName="SQ_GUITAR_PK")
 	@Column(name="GUITAR_ID")
 	private int id;
 	
