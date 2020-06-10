@@ -1,0 +1,12 @@
+spring:
+      application:
+        name: trex-service
+      datasource:
+        platform: oracle
+        url: jdbc:oracle:thin:@XXXX:1521:ORCL
+        username: Admin
+        password: p4ssw0rd
+        driver-class-name: oracle.jdbc.OracleDriver
+      jpa:
+        database: ORACLE
+        show-sql: true

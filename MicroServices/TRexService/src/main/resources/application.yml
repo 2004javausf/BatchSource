@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: trex-service
+  datasource:    platform: oracle
+    url: jdbc:oracle:thin:@java2004usf.ccjzasyyhpja.us-east-2.rds.amazonaws.com:1521:ORCL
+    username: kittenkillzu
+    password: pega4life
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  jpa:    database: ORACLE
+    show-sql: true
+    hibernate:      ddl-auto: create
