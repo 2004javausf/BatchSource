@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="blab-boot/.mvn/wrapper"/>
+	<classpathentry kind="src" path="blab-boot/src/main/java"/>
+	<classpathentry kind="src" path="blab-boot/src/test/java"/>
+	<classpathentry kind="src" path="BootExample/.mvn/wrapper"/>
+	<classpathentry kind="src" path="BootExample/src/main/java"/>
+	<classpathentry kind="src" path="BootExample/src/test/java"/>
+	<classpathentry kind="src" path="HelloSpringBoot/src/main/java"/>
+	<classpathentry kind="src" path="HelloSpringBoot2/.mvn/wrapper"/>
+	<classpathentry kind="src" path="HelloSpringBoot2/src/main/java"/>
+	<classpathentry kind="src" path="HelloSpringBoot2/src/test/java"/>
+	<classpathentry kind="src" path="SpringBoot/BootExample/src/main/java"/>
+	<classpathentry kind="src" path="SpringBoot/BootExample/src/test/java"/>
+	<classpathentry kind="src" path="SpringBoot/RAS-API/src/main/java"/>
+	<classpathentry kind="src" path="SpringBoot/RAS-API/src/test/java"/>
+	<classpathentry kind="src" path="SpringBootDemo/src/main/java"/>
+	<classpathentry kind="lib" path="BootExample/bin/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="HelloSpringBoot2/bin/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="SpringBoot/BootExample/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="SpringBoot/RAS-API/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="output" path="BootExample/target/classes"/>
+</classpath>
