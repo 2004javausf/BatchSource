@@ -48,5 +48,10 @@ public class FlashcardService {
                 .map(FlashcardDTO::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void deleteCardByCreatorId(int id) {
+        cardRepo.deleteFlashcardByCreatorId(id);
+    }
     
 }
