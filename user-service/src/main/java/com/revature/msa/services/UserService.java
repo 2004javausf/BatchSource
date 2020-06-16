@@ -14,10 +14,12 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private UserRepository userRepo;
+    private QueueService queueService;
 
     @Autowired
-    public UserService(UserRepository repo) {
+    public UserService(UserRepository repo, QueueService queue) {
         this.userRepo = repo;
+        this.queueService = queue;
     }
 
     @Transactional
@@ -47,6 +49,12 @@ public class UserService {
     public AppUserDTO getUserById(int id) {
         AppUser user = userRepo.findById(id).orElseThrow(RuntimeException::new);
         return new AppUserDTO(user);
+    }
+
+    @Transactional
+    public void deleteUserById(int id) {
+        userRepo.deleteById(id);
+        queueService.publishUserDeletedMessage(id);
     }
 
 }
