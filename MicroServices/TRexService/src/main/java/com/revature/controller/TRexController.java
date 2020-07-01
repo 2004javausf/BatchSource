@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Message;
@@ -24,21 +26,23 @@ public class TRexController {
 	@Autowired
 	private TRexService trs;
 	
+	@ResponseStatus(HttpStatus.OK)//this will be default. don't really need
 	@GetMapping("/all")
-	public ResponseEntity<List<TRex>> getAllTRexes(){
-		return new ResponseEntity<>(trs.getAllTRexes(),HttpStatus.OK);
+	public List<TRex> getAllTRexes(){
+		return  trs.getAllTRexes();
+		
 	}
 	
+	@ResponseStatus(HttpStatus.CREATED)//201 created new row
 	@PostMapping("")
-	public ResponseEntity<Message> addTrex(@RequestBody TRex trex){
-		ResponseEntity<Message> resp=null;
-		try {
+	public Message addTrex(@RequestBody TRex trex){
 			trs.addTRex(trex);
-			resp= new ResponseEntity<Message>(new Message("T-REX CREATED SUCCESSFULY"),HttpStatus.OK);
-		}catch (Exception e) {
-			resp= new ResponseEntity<Message>(new Message("FAILED TO CREATE T-REX"),HttpStatus.BAD_REQUEST);
-		}
-		return resp;
+			return new Message("T-REX CREATED SUCCESSFULY");	
 	}
 	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler
+	public Message handleException(Exception e) {
+		return new Message("FAILED TO CREATE T-REX");
+	}
 }
